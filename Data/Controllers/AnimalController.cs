@@ -2,38 +2,34 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Reflection.Metadata.Ecma335;
-using AnimalShelter.Manager;
 using AnimalShelter.Data.Models;
 
 namespace AnimalShelter.Data.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class AnimalController : ControllerBase
+    [Route("api/animals")]
+    public class AnimalController : Controller
     {
-        private readonly DataContext context;
-        private readonly JwtAuthManager jwtAuthManager;
-
-        public AnimalController(DataContext context, JwtAuthManager jwtAuthManager)
+        private readonly DataContext _context;
+        public AnimalController(DataContext context)
         {
-            this.context = context;
-            this.jwtAuthManager = jwtAuthManager;
+            _context = context;
         }
 
         [Authorize]
-        [HttpPost]
+        [HttpPost(Name = "AddAnimal")]
         public async Task<ActionResult<List<Animal>>> AddAnimal(Animal animal)
         {
-            context.Animals.Add(animal);
-            await context.SaveChangesAsync();
-            return Ok(await context.Animals.ToListAsync());
+            _context.Animals.Add(animal);
+            await _context.SaveChangesAsync();
+            return Ok(await _context.Animals.ToListAsync());
         }
 
         [Authorize]
         [HttpPut]
         public async Task<ActionResult<List<Animal>>> UpdateAnimal(Animal request)
         {
-            var animal = await context.Animals.FindAsync(request.Id);
+            var animal = await _context.Animals.FindAsync(request.Id);
             if (animal == null)
             {
                 return BadRequest("Animal not found.");
@@ -42,39 +38,39 @@ namespace AnimalShelter.Data.Controllers
             animal.Name = request.Name;
             animal.PossibleBirthYear = request.PossibleBirthYear;
 
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-            return Ok(await context.Animals.ToListAsync());
+            return Ok(await _context.Animals.ToListAsync());
         }
 
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Animal>> DeleteAnimal(int id)
         {
-            var animal = await context.Animals.FindAsync(id);
+            var animal = await _context.Animals.FindAsync(id);
             if (animal == null)
             {
                 return BadRequest("Animal not found.");
             }
 
-            context.Animals.Remove(animal);
-            await context.SaveChangesAsync();
+            _context.Animals.Remove(animal);
+            await _context.SaveChangesAsync();
 
-            return Ok(await context.Animals.ToListAsync());
+            return Ok(await _context.Animals.ToListAsync());
         }
 
         [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<List<Animal>>> GetAnimals()
         {
-            return Ok(await context.Animals.ToListAsync());
+            return Ok(await _context.Animals.ToListAsync());
         }
 
         [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<Animal>> GetAnimal(int id)
         {
-            var animal = await context.Animals.FindAsync(id);
+            var animal = await _context.Animals.FindAsync(id);
             if (animal == null)
             {
                 return BadRequest("Animal not found.");
