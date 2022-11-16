@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AnimalShelter.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnimalShelter.Data
 {

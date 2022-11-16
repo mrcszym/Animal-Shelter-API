@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ssmsz\\Desktop\\AnimalShelter\\AnimalShelter\\AnimalShelter.csproj": {}
+    "C:\\Users\\ssmsz\\Desktop\\Animal-Shelter-API\\AnimalShelter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ssmsz\\Desktop\\AnimalShelter\\AnimalShelter\\AnimalShelter.csproj": {
+    "C:\\Users\\ssmsz\\Desktop\\Animal-Shelter-API\\AnimalShelter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ssmsz\\Desktop\\AnimalShelter\\AnimalShelter\\AnimalShelter.csproj",
+        "projectUniqueName": "C:\\Users\\ssmsz\\Desktop\\Animal-Shelter-API\\AnimalShelter.csproj",
         "projectName": "AnimalShelter",
-        "projectPath": "C:\\Users\\ssmsz\\Desktop\\AnimalShelter\\AnimalShelter\\AnimalShelter.csproj",
+        "projectPath": "C:\\Users\\ssmsz\\Desktop\\Animal-Shelter-API\\AnimalShelter.csproj",
         "packagesPath": "C:\\Users\\ssmsz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ssmsz\\Desktop\\AnimalShelter\\AnimalShelter\\obj\\",
+        "outputPath": "C:\\Users\\ssmsz\\Desktop\\Animal-Shelter-API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,6 +45,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.0, )"
